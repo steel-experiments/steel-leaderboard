@@ -1,3 +1,11 @@
+export interface Methodology {
+  dataset: "full-643" | "filtered" | "custom";
+  evaluator: "gpt-4v" | "human" | "custom";
+  selfReported: boolean;
+  model?: string;
+  notes?: string;
+}
+
 export interface LeaderboardEntry {
   agent: string;
   organization: string;
@@ -5,6 +13,7 @@ export interface LeaderboardEntry {
     score: string;
     source: string;
   };
+  methodology?: Methodology;
   isNew?: boolean;
   github: string | null;
   homepage: string;
@@ -18,6 +27,12 @@ export const leaderboardEntries: LeaderboardEntry[] = [
       score: "97.1%",
       source: "https://hcompany.ai/surfer-2",
     },
+    methodology: {
+      dataset: "full-643",
+      evaluator: "gpt-4v",
+      selfReported: true,
+      model: "Holo1",
+    },
     isNew: true,
     github: null,
     homepage: "https://hcompany.ai/surfer-2",
@@ -27,21 +42,32 @@ export const leaderboardEntries: LeaderboardEntry[] = [
     organization: "Magnitude",
     webVoyager: {
       score: "93.9%",
-      source: "https://github.com/magnitudedev/webvoyager",
+      source: "https://magnitude.run/webvoyager",
     },
-    isNew: false,
-    github: "https://github.com/magnitudedev/browser-agent?tab=readme-ov-file",
+    methodology: {
+      dataset: "full-643",
+      evaluator: "gpt-4v",
+      selfReported: true,
+    },
+    isNew: true,
+    github: "https://github.com/magnitudedev/magnitude",
     homepage: "https://magnitude.run",
   },
   {
-    agent: "Aime Browser-USE",
+    agent: "AIME Browser-Use",
     organization: "Aime",
     webVoyager: {
       score: "92.34%",
-      source: "https://arxiv.org/pdf/2507.11988",
+      source: "https://aime-browser-use.github.io/",
+    },
+    methodology: {
+      dataset: "full-643",
+      evaluator: "gpt-4v",
+      selfReported: true,
+      notes: "Score from project page, not independently verified.",
     },
     isNew: true,
-    github: "https://github.com/Aime-Browser-USE/Aime-Browser-USE.github.io",
+    github: null,
     homepage: "https://aime-browser-use.github.io/",
   },
   {
@@ -50,6 +76,12 @@ export const leaderboardEntries: LeaderboardEntry[] = [
     webVoyager: {
       score: "92.2%",
       source: "https://arxiv.org/pdf/2506.02865",
+    },
+    methodology: {
+      dataset: "full-643",
+      evaluator: "gpt-4v",
+      selfReported: false,
+      model: "Holo1",
     },
     isNew: true,
     github: null,
@@ -62,6 +94,11 @@ export const leaderboardEntries: LeaderboardEntry[] = [
       score: "90.4%",
       source: "https://www.browserable.ai/blog/web-voyager-benchmark",
     },
+    methodology: {
+      dataset: "full-643",
+      evaluator: "gpt-4v",
+      selfReported: true,
+    },
     isNew: true,
     github: "https://github.com/browserable/browserable",
     homepage: "https://www.browserable.ai",
@@ -73,7 +110,12 @@ export const leaderboardEntries: LeaderboardEntry[] = [
       score: "89.1%",
       source: "https://browser-use.com/posts/sota-technical-report",
     },
-    isNew: false,
+    methodology: {
+      dataset: "full-643",
+      evaluator: "gpt-4v",
+      selfReported: true,
+    },
+    isNew: true,
     github: "https://github.com/browser-use/browser-use",
     homepage: "https://browser-use.com",
   },
@@ -82,9 +124,15 @@ export const leaderboardEntries: LeaderboardEntry[] = [
     organization: "OpenAI",
     webVoyager: {
       score: "87%",
-      source: "https://openai.com/index/computer-using-agent/",
+      source: "https://openai.com/index/introducing-operator/",
     },
-    isNew: false,
+    methodology: {
+      dataset: "full-643",
+      evaluator: "gpt-4v",
+      selfReported: true,
+      model: "CUA",
+    },
+    isNew: true,
     github: null,
     homepage: "https://operator.chatgpt.com/",
   },
@@ -93,10 +141,14 @@ export const leaderboardEntries: LeaderboardEntry[] = [
     organization: "Skyvern",
     webVoyager: {
       score: "85.85%",
-      source:
-        "https://blog.skyvern.com/skyvern-2-0-state-of-the-art-web-navigation-with-85-8-on-webvoyager-eval/",
+      source: "https://blog.skyvern.com/skyvern-2-0-state-of-the-art-web-navigation-with-85-8-on-webvoyager-eval/",
     },
-    isNew: false,
+    methodology: {
+      dataset: "full-643",
+      evaluator: "gpt-4v",
+      selfReported: true,
+    },
+    isNew: true,
     github: "https://github.com/Skyvern-AI/Skyvern",
     homepage: "https://www.skyvern.com",
   },
@@ -105,7 +157,13 @@ export const leaderboardEntries: LeaderboardEntry[] = [
     organization: "Google",
     webVoyager: {
       score: "83.5%",
-      source: "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/google-gemini-ai-update-december-2024/#project-mariner",
+      source: "https://deepmind.google/technologies/project-mariner/",
+    },
+    methodology: {
+      dataset: "full-643",
+      evaluator: "gpt-4v",
+      selfReported: true,
+      model: "Gemini 2.0 Flash",
     },
     github: null,
     homepage: "https://deepmind.google/technologies/project-mariner/",
@@ -117,25 +175,42 @@ export const leaderboardEntries: LeaderboardEntry[] = [
       score: "73.1%",
       source: "https://www.emergence.ai/blog/agent-e-sota",
     },
+    methodology: {
+      dataset: "full-643",
+      evaluator: "gpt-4v",
+      selfReported: true,
+    },
     github: null,
     homepage: "https://www.emergence.ai",
   },
-    {
+  {
     agent: "Proxy Lite",
     organization: "Convergence AI",
     webVoyager: {
       score: "72.4%",
-      source: "https://huggingface.co/datasets/convergence-ai/WebVoyager2025Valid",
+      source: "https://convergence.ai/proxy-lite",
+    },
+    methodology: {
+      dataset: "full-643",
+      evaluator: "gpt-4v",
+      selfReported: true,
+      notes: "Open-weights model, first among open-weights on WebVoyager.",
     },
     github: null,
-    homepage: "https://www.convergencelabs.uk/",
+    homepage: "https://convergence.ai",
   },
   {
     agent: "WebSight",
     organization: "Academic Research",
     webVoyager: {
       score: "68%",
-      source: "https://arxiv.org/pdf/2508.16987",
+      source: "https://arxiv.org/abs/2508.16987",
+    },
+    methodology: {
+      dataset: "filtered",
+      evaluator: "gpt-4v",
+      selfReported: false,
+      notes: "Evaluated on a filtered 50-task subset, not the full 643-task suite.",
     },
     github: null,
     homepage: "https://arxiv.org/abs/2508.16987",
@@ -145,10 +220,15 @@ export const leaderboardEntries: LeaderboardEntry[] = [
     organization: "H Company",
     webVoyager: {
       score: "67%",
-      source: "https://hcompany.ai/charting-a-new-route-the-tech-behind-runner-hs-state-of-the-art-results",
+      source: "https://www.hcompany.ai/blog/a-research-update",
+    },
+    methodology: {
+      dataset: "full-643",
+      evaluator: "gpt-4v",
+      selfReported: true,
     },
     github: null,
-    homepage: "https://hcompany.ai/put-ai-to-work-for-you-with-runner-h",
+    homepage: "https://www.hcompany.ai",
   },
   {
     agent: "WebVoyager",
@@ -157,15 +237,25 @@ export const leaderboardEntries: LeaderboardEntry[] = [
       score: "59.1%",
       source: "https://arxiv.org/abs/2401.13919",
     },
+    methodology: {
+      dataset: "full-643",
+      evaluator: "gpt-4v",
+      selfReported: false,
+    },
     github: "https://github.com/MinorJerry/WebVoyager",
     homepage: "https://github.com/MinorJerry/WebVoyager",
   },
-   {
+  {
     agent: "WILBUR",
     organization: "Academic Research",
     webVoyager: {
       score: "53%",
       source: "https://arxiv.org/abs/2404.05902",
+    },
+    methodology: {
+      dataset: "full-643",
+      evaluator: "gpt-4v",
+      selfReported: false,
     },
     github: null,
     homepage: "https://arxiv.org/abs/2404.05902",
