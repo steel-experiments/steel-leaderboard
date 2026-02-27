@@ -23,6 +23,18 @@ const evaluatorLabel: Record<string, string> = {
   "human": "Human eval",
   "custom": "Custom evaluator",
 };
+
+function getLinkRel(url: string): string {
+  try {
+    const hostname = new URL(url).hostname.toLowerCase().replace(/^www\./, "");
+    const isSteelDomain = hostname === "steel.dev" || hostname.endsWith(".steel.dev");
+    return isSteelDomain
+      ? "noopener noreferrer"
+      : "noopener noreferrer nofollow";
+  } catch {
+    return "noopener noreferrer nofollow";
+  }
+}
 ---
 
 <div class="flex flex-col w-full">
@@ -62,20 +74,20 @@ const evaluatorLabel: Record<string, string> = {
                     </div>
                     <div class="text-text uppercase flex flex-wrap items-center">
                       <div class="flex items-center gap-2">
-                        <a
-                          href={entry.homepage}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="hover:text-accent hover:underline transition-colors"
-                          onclick="event.stopPropagation()"
-                        >
+	                        <a
+	                          href={entry.homepage}
+	                          target="_blank"
+	                          rel={getLinkRel(entry.homepage)}
+	                          class="hover:text-accent hover:underline transition-colors"
+	                          onclick="event.stopPropagation()"
+	                        >
                           {entry.agent}
                         </a>
                         {entry.github && (
-                          <a
+                            <a
                             href={entry.github}
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel={getLinkRel(entry.github)}
                             class="text-xs text-dim hover:text-accent transition-colors flex items-center gap-1"
                             title="View on GitHub"
                             onclick="event.stopPropagation()"
@@ -106,7 +118,7 @@ const evaluatorLabel: Record<string, string> = {
                       <a
                         href={entry.webVoyager.source}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel={getLinkRel(entry.webVoyager.source)}
                         class={`${entry.webVoyager.score === "N/A" ? "text-dim" : parseInt(entry.webVoyager.score.replace("%", "")) < 50 ? "text-error" : "text-success"} hover:text-accent hover:underline transition-colors`}
                         onclick="event.stopPropagation()"
                       >
@@ -197,7 +209,7 @@ const evaluatorLabel: Record<string, string> = {
       ERROR OR WANT TO SUBMIT A RESULT, <a
         href="https://github.com/steel-dev/leaderboard"
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener noreferrer nofollow"
         class="text-text underline hover:text-accent transition-colors">OPEN A PR ON GITHUB</a
       >.
     </p>
