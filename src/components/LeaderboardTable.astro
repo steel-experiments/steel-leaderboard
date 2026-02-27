@@ -12,11 +12,11 @@ const highestScore = Math.max(
 );
 
 const datasetLabel: Record<string, string> = {
-    "full-643": "Full 643-task suite",
-    "filtered": "Filtered subset",
-    "custom": "Custom dataset",
-    "webvoyager30": "WebVoyager30 subset",
-  };
+  "full-643": "Full 643-task suite",
+  "filtered": "Filtered subset",
+  "custom": "Custom dataset",
+  "webvoyager30": "WebVoyager30 subset",
+};
 
 const evaluatorLabel: Record<string, string> = {
   "gpt-4v": "GPT-4V judge",
@@ -65,7 +65,6 @@ function getLinkRel(url: string): string {
               const isSota = parseFloat(entry.webVoyager.score.replace("%", "")) === highestScore;
               const rank = index + 1;
               const m = entry.methodology;
-
               return (
                 <details class="group">
                   <summary class="grid grid-cols-[0.5fr_1fr_1fr_1.5fr] md:grid-cols-[0.5fr_2fr_1fr_1.5fr] gap-2 hover:bg-text hover:bg-opacity-5 transition-colors duration-200 w-full py-1 list-none cursor-pointer">
@@ -74,17 +73,17 @@ function getLinkRel(url: string): string {
                     </div>
                     <div class="text-text uppercase flex flex-wrap items-center">
                       <div class="flex items-center gap-2">
-	                        <a
-	                          href={entry.homepage}
-	                          target="_blank"
-	                          rel={getLinkRel(entry.homepage)}
-	                          class="hover:text-accent hover:underline transition-colors"
-	                          onclick="event.stopPropagation()"
-	                        >
+                        <a
+                          href={entry.homepage}
+                          target="_blank"
+                          rel={getLinkRel(entry.homepage)}
+                          class="hover:text-accent hover:underline transition-colors"
+                          onclick="event.stopPropagation()"
+                        >
                           {entry.agent}
                         </a>
                         {entry.github && (
-                            <a
+                          <a
                             href={entry.github}
                             target="_blank"
                             rel={getLinkRel(entry.github)}
@@ -133,15 +132,13 @@ function getLinkRel(url: string): string {
                     </div>
                     <div class="text-text flex items-center justify-between">
                       {entry.organization}
-                      <span class="text-dim text-xs group-open:text-accent transition-colors mr-1">
+                      <span class="hidden text-dim text-xs group-open:text-accent transition-colors mr-1">
                         <span class="group-open:hidden">[+]</span>
                         <span class="hidden group-open:inline">[-]</span>
                       </span>
                     </div>
                   </summary>
-
-                  <!-- Expandable methodology row -->
-                  <div class="border-t border-text border-opacity-10 mx-0 mb-1 px-2 py-3 bg-text bg-opacity-5 text-xs text-dim uppercase">
+                  <div class="hidden border-t border-text border-opacity-10 mx-0 mb-1 px-2 py-3 bg-text bg-opacity-5 text-xs text-dim uppercase">
                     {m ? (
                       <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-2">
                         <div>
@@ -205,7 +202,7 @@ function getLinkRel(url: string): string {
       <span class="text-text">⚠ METHODOLOGY NOTE —</span> SCORES ARE NOT ALWAYS DIRECTLY COMPARABLE.
       ORGANIZATIONS USE DIFFERENT VARIANTS OF THE WEBVOYAGER DATASET (FULL 643-TASK SUITE VS. FILTERED
       SUBSETS), DIFFERENT EVALUATORS (GPT-4V JUDGE VS. CUSTOM), AND SOME RESULTS ARE SELF-REPORTED
-      RATHER THAN INDEPENDENTLY VERIFIED. CLICK ANY ROW TO VIEW ITS METHODOLOGY. CLICK ANY SCORE TO VIEW ITS ORIGINAL SOURCE. IF YOU SPOT AN
+      RATHER THAN INDEPENDENTLY VERIFIED. CLICK ANY SCORE TO VIEW ITS ORIGINAL SOURCE. IF YOU SPOT AN
       ERROR OR WANT TO SUBMIT A RESULT, <a
         href="https://github.com/steel-dev/leaderboard"
         target="_blank"
