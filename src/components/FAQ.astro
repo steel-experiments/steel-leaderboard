@@ -1,0 +1,68 @@
+---
+const faqs = [
+  {
+    q: "What is the WebVoyager benchmark?",
+    a: "WebVoyager is an academic benchmark introduced in a 2024 paper that evaluates how well AI agents can complete real-world web navigation tasks. It consists of 643 tasks across 15 popular websites including Google, Amazon, GitHub, and Wikipedia. Tasks range from simple lookups to multi-step interactions. An agent's score represents the percentage of tasks it completes successfully, evaluated by GPT-4V as a judge."
+  },
+  {
+    q: "Are all scores directly comparable?",
+    a: "Not always. Most entries are evaluated on the full 643-task suite, but some agents report scores on filtered subsets of the benchmark. Additionally, some scores are self-reported by the organizations themselves, while others come from third-party evaluations. Each entry links to its original source so you can assess the methodology yourself."
+  },
+  {
+    q: "What does SOTA mean?",
+    a: "SOTA stands for State of the Art — it is automatically awarded to whichever agent currently has the highest WebVoyager score on this leaderboard. It updates whenever a new top-scoring agent is added."
+  },
+  {
+    q: "What does NEW mean?",
+    a: "The NEW badge is manually applied to agents that were recently added to the leaderboard. It is an editorial marker to help you spot recent additions at a glance."
+  },
+  {
+    q: "How often is the leaderboard updated?",
+    a: "We update the leaderboard as new benchmark results are published. The AI browser agent space moves fast and new results can appear weekly. If you know of an agent or score that is missing, we welcome pull requests and issues on the GitHub repo."
+  },
+  {
+    q: "How do I add my agent to the leaderboard?",
+    a: "Open a pull request on the GitHub repository and add your entry to src/lib/leaderboard.ts. You will need a publicly verifiable score on the WebVoyager benchmark, a link to the source (paper, blog post, or benchmark page), and either a homepage or GitHub repo."
+  },
+  {
+    q: "What is Steel.dev?",
+    a: "Steel is an open-source browser API purpose-built for AI agents. It handles the infrastructure — sessions, proxies, anti-bot measures, and browser lifecycle management — so you can focus on building the agent logic itself. You can learn more at steel.dev."
+  },
+  {
+    q: "Why is WebVoyager used as the benchmark and not others?",
+    a: "WebVoyager is the most widely adopted public benchmark for web agents, making cross-agent comparison possible. Other benchmarks like Mind2Web, OSWorld, and WorkArena exist but have seen less consistent adoption across organizations. As the space matures, we may expand the leaderboard to include additional benchmarks."
+  },
+  {
+    q: "Is a higher WebVoyager score always better in production?",
+    a: "Not necessarily. WebVoyager measures task completion on a fixed set of websites under controlled conditions. Production performance depends on many factors not captured by the benchmark — latency, cost per task, handling of CAPTCHAs, anti-bot detection, and generalization to novel websites. Use the leaderboard as a directional signal, not a definitive ranking for your use case."
+  },
+];
+---
+
+<div class="w-full max-w-4xl mt-12">
+  <div class="font-mono border border-text border-opacity-30 max-w-4xl w-full">
+    <div class="bg-[var(--color-text)] p-[0.62rem] flex w-full items-center gap-[0.62rem]">
+      <div class="bg-text text-black font-bold">FAQ</div>
+      <div class="flex flex-col gap-1 flex-1">
+        {[0, 1, 2, 3, 4].map(() => <div class="bg-black h-[0.0625rem] w-full" />)}
+      </div>
+    </div>
+
+    <div class="divide-y divide-text divide-opacity-10">
+      {faqs.map((item) => (
+        <details class="group px-3 py-3 cursor-pointer">
+          <summary class="flex justify-between items-center list-none cursor-pointer hover:text-accent transition-colors duration-200 uppercase text-sm">
+            <span>{item.q}</span>
+            <span class="text-dim group-open:text-accent transition-colors ml-4 shrink-0">
+              <span class="group-open:hidden">[+]</span>
+              <span class="hidden group-open:inline">[-]</span>
+            </span>
+          </summary>
+          <div class="mt-3 text-dim text-sm leading-relaxed border-t border-text border-opacity-10 pt-3">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</div>
