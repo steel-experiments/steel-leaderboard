@@ -1,5 +1,5 @@
 export interface Methodology {
-  dataset: "full-643" | "filtered" | "custom";
+  dataset: "full-643" | "filtered" | "custom" | "webvoyager30";
   evaluator: "gpt-4v" | "human" | "custom";
   selfReported: boolean;
   model?: string;
@@ -169,6 +169,24 @@ export const leaderboardEntries: LeaderboardEntry[] = [
     homepage: "https://deepmind.google/technologies/project-mariner/",
   },
   {
+    agent: "Notte",
+    organization: "Notte",
+    webVoyager: {
+      score: "73.1%",
+      source: "https://github.com/nottelabs/open-operator-evals#opensource-operators-evals",
+    },
+    methodology: {
+      dataset: "webvoyager30",
+      evaluator: "gpt-4v",
+      selfReported: false,
+      model: "Gemini 2.0 Flash",
+      notes:
+        "Open Operator Evals reports 79.0% LLM-evaluated, 86.2% self-reported, averaged on WebVoyager30 with 8 tries/task.",
+    },
+    github: "https://github.com/nottelabs/notte",
+    homepage: "https://github.com/nottelabs/notte",
+  },
+  {
     agent: "Agent-E",
     organization: "Emergence AI",
     webVoyager: {
@@ -182,22 +200,6 @@ export const leaderboardEntries: LeaderboardEntry[] = [
     },
     github: null,
     homepage: "https://www.emergence.ai",
-  },
-  {
-    agent: "Proxy Lite",
-    organization: "Convergence AI",
-    webVoyager: {
-      score: "72.4%",
-      source: "https://convergence.ai/proxy-lite",
-    },
-    methodology: {
-      dataset: "full-643",
-      evaluator: "gpt-4v",
-      selfReported: true,
-      notes: "Open-weights model, first among open-weights on WebVoyager.",
-    },
-    github: null,
-    homepage: "https://convergence.ai",
   },
   {
     agent: "WebSight",
